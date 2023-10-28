@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753334474052",
+    "project_id": "communitrade-449ae",
+    "storage_bucket": "communitrade-449ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753334474052:android:08088a61b712a684823311",
+        "android_client_info": {
+          "package_name": "com.example.practice_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbLAN3xUqOeb72AvcNWl6OiCH0Pa7N8mQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
