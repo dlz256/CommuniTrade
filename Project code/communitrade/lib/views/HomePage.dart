@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:communitrade/views/authentication/login.dart';
 import 'package:communitrade/views/create_post.dart';
 import 'package:provider/provider.dart';
+// import 'package:http/http.dart' as http;
+// import 'dart:typed_data';
 
 class HomePage extends StatelessWidget {
   final User user;
@@ -25,19 +27,26 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 Text(
                   document['Item'],
-                  style: Theme.of(context).textTheme.labelSmall,
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
                 const SizedBox(
                     height:
                         10), // Add some spacing between the name and the square
                 Center(
                   child: Container(
-                    width: 100.0, // You can adjust the square size as needed
-                    height: 100.0,
-                    decoration: const BoxDecoration(
-                      color: Colors.blue, // Color of the square
-                    ),
-                  ),
+                      width: 300, // You can adjust the square size as needed
+                      height: 200.0,
+                      decoration: const BoxDecoration(
+                        color: Colors.blue, // Color of the square
+                      ),
+                      child: Image.network(
+                       document['imageUrl'],
+                        errorBuilder: (context, error, stackTrace) {
+                          return Text('$error');
+                        },
+                      )
+                      // child: Text(document['imageUrl'])
+                      ),
                 ),
               ])),
     );
@@ -64,14 +73,14 @@ class HomePage extends StatelessWidget {
                         10), // Add some spacing between the name and the square
                 Center(
                   child: Container(
-                      width: 200.0, // You can adjust the square size as needed
-                      height: 100.0,
+                      width: 300.0, // You can adjust the square size as needed
+                      height: 200.0,
                       decoration: const BoxDecoration(
                         color: Colors.lightBlueAccent, // Color of the square
                       ),
                       child: Text(
                         document['ReturnItem'],
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: Theme.of(context).textTheme.labelMedium,
                       )),
                 ),
               ])),
@@ -101,17 +110,20 @@ class HomePage extends StatelessWidget {
           title: Text('Dashboard'),
           actions: [
             IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () async {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreatePost(user: user)),
-                  );
-                });
-              },
-            ),
+                icon: Icon(Icons.add),
+                onPressed: () async {
+                  try {
+                    Future.delayed(Duration.zero, () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CreatePost(user: user)),
+                      );
+                    });
+                  } catch (e) {
+                    print('Navigation error: $e');
+                  }
+                }),
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () async {
@@ -171,3 +183,4 @@ String? getUserDisplayName() {
     return 'User Display Name Not Available';
   }
 }
+

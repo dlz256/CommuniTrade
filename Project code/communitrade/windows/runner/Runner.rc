@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "practice_app" "\0"
+            VALUE "FileDescription", "communitrade" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "practice_app" "\0"
+            VALUE "InternalName", "communitrade" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "practice_app.exe" "\0"
-            VALUE "ProductName", "practice_app" "\0"
+            VALUE "OriginalFilename", "communitrade.exe" "\0"
+            VALUE "ProductName", "communitrade" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

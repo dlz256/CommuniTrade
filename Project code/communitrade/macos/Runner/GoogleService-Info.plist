@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.practiceApp.RunnerTests</string>
+	<string>com.example.communitrade.RunnerTests</string>
 	<key>PROJECT_ID</key>
 	<string>communitrade-449ae</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:753334474052:ios:99a11a559185355c823311</string>
+	<string>1:753334474052:ios:2c64925825cf1275823311</string>
 </dict>
 </plist>

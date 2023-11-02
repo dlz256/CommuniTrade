@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBbLAN3xUqOeb72AvcNWl6OiCH0Pa7N8mQ',
-    appId: '1:753334474052:android:08088a61b712a684823311',
+    appId: '1:753334474052:android:8e868e0cfac3f67e823311',
     messagingSenderId: '753334474052',
     projectId: 'communitrade-449ae',
     storageBucket: 'communitrade-449ae.appspot.com',
@@ -62,19 +62,19 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC9IYbZR4HwALg6aYnh_v8MctozZet6bsg',
-    appId: '1:753334474052:ios:bd6cdcd9d3e3d646823311',
+    appId: '1:753334474052:ios:0e968dd43d585972823311',
     messagingSenderId: '753334474052',
     projectId: 'communitrade-449ae',
     storageBucket: 'communitrade-449ae.appspot.com',
-    iosBundleId: 'com.example.practiceApp',
+    iosBundleId: 'com.example.communitrade',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyC9IYbZR4HwALg6aYnh_v8MctozZet6bsg',
-    appId: '1:753334474052:ios:99a11a559185355c823311',
+    appId: '1:753334474052:ios:2c64925825cf1275823311',
     messagingSenderId: '753334474052',
     projectId: 'communitrade-449ae',
     storageBucket: 'communitrade-449ae.appspot.com',
-    iosBundleId: 'com.example.practiceApp.RunnerTests',
+    iosBundleId: 'com.example.communitrade.RunnerTests',
   );
 }

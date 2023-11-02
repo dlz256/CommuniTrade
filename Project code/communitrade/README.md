@@ -1,4 +1,4 @@
-# practice_app
+# communitrade
 
 A new Flutter project.
 

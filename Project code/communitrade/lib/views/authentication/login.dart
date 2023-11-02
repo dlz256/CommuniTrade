@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 import '../../firebase_auth.dart';
-import '../../validator.dart';
+import 'validator.dart';
 import '../HomePage.dart';
 
 Future<void> main() async {

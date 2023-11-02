@@ -1,6 +1,6 @@
 {
-    "name": "practice_app",
-    "short_name": "practice_app",
+    "name": "communitrade",
+    "short_name": "communitrade",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
