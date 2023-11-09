@@ -35,11 +35,24 @@ class CreatePostState extends State<CreatePost> {
   final TextEditingController itemNameController = TextEditingController();
   final TextEditingController returnItemController = TextEditingController();
   List<String> selectedTags = [];
+  List<String> selectedReturnTags = [];
 
-  bool MensClothesChecked = false;
-  bool WomensClothesChecked = false;
-  bool KidsClothesChecked = false;
-  bool HardwareChecked = false;
+  bool clothesChecked = false;
+  bool fitnessChecked = false;
+  bool houseChecked = false;
+  bool hardwareChecked = false;
+  bool electricalChecked = false;
+  bool suppliesChecked = false;
+  bool freeChecked = false;
+  bool otherChecked = false; 
+  bool returnclothesChecked = false;
+  bool returnfitnessChecked = false;
+  bool returnhouseChecked = false;
+  bool returnhardwareChecked = false;
+  bool returnelectricalChecked = false;
+  bool returnsuppliesChecked = false;
+  bool returnfreeChecked = false;
+  bool returnotherChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +89,7 @@ class CreatePostState extends State<CreatePost> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.person),
+            icon: const Icon(Icons.person),
             onPressed: () {
               Navigator.pushNamed(context, '/page2');
             },
@@ -84,13 +97,13 @@ class CreatePostState extends State<CreatePost> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextField(
               controller: itemNameController,
-              decoration: InputDecoration(labelText: 'Item'),
+              decoration: const InputDecoration(labelText: 'Item'),
             ),
             const SizedBox(
               height: 20,
@@ -105,67 +118,245 @@ class CreatePostState extends State<CreatePost> {
                 onPressed: () async {
                   PickImageFromGallery();
                 }),
-            Wrap(
-              spacing: 10.0, // Horizontal spacing between elements
-              runSpacing: (MediaQuery.of(context).size.width < 4 * 200) ? 10.0 : 0.0, // 200 is the width of each element
-              alignment: WrapAlignment.start, // Adjust alignment as needed
-  
+                if (imageUrl != '') Image.network(
+                        imageUrl,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Text('$error');
+                        }
+                      ),
+            Row(
               children: [
-                Checkbox(
-                    value: MensClothesChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        MensClothesChecked = value!;
-                        if (MensClothesChecked)
-                          selectedTags.add("Mclothes");
-                        else if (!MensClothesChecked) selectedTags.remove("Mclothes");
-                      });
-                    }),
-                const Text('Mens Clothes'),
-                Checkbox(
-                    value: WomensClothesChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        WomensClothesChecked = value!;
-                        if (WomensClothesChecked)
-                          selectedTags.add("Wclothes");
-                        else if (!WomensClothesChecked) selectedTags.remove("Wclothes");
-                      });
-                    }),
-                const Text('Womens Clothes'),
-                Checkbox(
-                    value: KidsClothesChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        KidsClothesChecked = value!;
-                        if (KidsClothesChecked)
-                          selectedTags.add("Kclothes");
-                        else if (!KidsClothesChecked) selectedTags.remove("Kclothes");
-                      });
-                    }),
-                const Text('Kids Clothes'),
-                Checkbox(
-                    value: HardwareChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        HardwareChecked = value!;
-                        if (HardwareChecked)
-                          selectedTags.add("Hequip");
-                        else if (!HardwareChecked) selectedTags.remove("Hequip");
-                      });
-                    }),
-                const Text('Hardware equipment'),
+                Expanded(
+                    child: Column(
+                  children: [
+                    Row(children: <Widget>[
+                      Checkbox(
+                          value: clothesChecked,
+                          onChanged: (value) {
+                            setState(() {
+                              clothesChecked = value!;
+                              if (clothesChecked) {
+                                selectedTags.add("Clothes");
+                              } else if (!clothesChecked)
+                                selectedTags.remove("Clothes");
+                            });
+                          }),
+                      const Text('Clothes')
+                    ]),
+                    Row(children: [Checkbox(
+                        value: fitnessChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            fitnessChecked = value!;
+                            if (fitnessChecked)
+                              selectedTags.add("Fitness");
+                            else if (!fitnessChecked)
+                              selectedTags.remove("Fitness");
+                          });
+                        }),
+                    const Text('Fitness Equipment'),],) ,
+                    Row(children: [Checkbox(
+                        value: hardwareChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            hardwareChecked = value!;
+                            if (hardwareChecked)
+                              selectedTags.add("Hequip");
+                            else if (!hardwareChecked)
+                              selectedTags.remove("Hequip");
+                          });
+                        }),
+                    const Text('Hardware equipment'),],) ,
+                   Row(children: [Checkbox(
+                        value: freeChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            freeChecked = value!;
+                            if (freeChecked)
+                              selectedTags.add("Free");
+                            else if (!freeChecked) selectedTags.remove("Free");
+                          });
+                        }),
+                    const Text('Free'),],) 
+                  ],
+                )),
+                Expanded(
+                    child: Column(
+                  children: [
+                   Row(children: [Checkbox(
+                        value: electricalChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            electricalChecked = value!;
+                            if (electricalChecked)
+                              selectedTags.add("electronics");
+                            else if (!electricalChecked)
+                              selectedTags.remove("electronics");
+                          });
+                        }),
+                    const Text('Electrical Equipment'),],) ,
+                   Row(children: [Checkbox(
+                        value: houseChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            houseChecked = value!;
+                            if (houseChecked)
+                              selectedTags.add("House");
+                            else if (!houseChecked)
+                              selectedTags.remove("House");
+                          });
+                        }),
+                    const Text('Household Items'),],) ,
+                   Row(children: [Checkbox(
+                        value: suppliesChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            suppliesChecked = value!;
+                            if (suppliesChecked)
+                              selectedTags.add("Supplies");
+                            else if (!suppliesChecked)
+                              selectedTags.remove("Supplies");
+                          });
+                        }),
+                    const Text('Supplies'),],) ,
+                  Row(children: [Checkbox(
+                        value: otherChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            otherChecked = value!;
+                            if (otherChecked)
+                              selectedTags.add("Other");
+                            else if (!otherChecked)
+                              selectedTags.remove("Other");
+                          });
+                        }),
+                    const Text('Other'),],) ,
+                  ],
+                ))
               ],
             ),
-            Text('Selected Tags: ${selectedTags.join(', ')}'),
+            //ext('Selected Tags: ${selectedTags.join(', ')}'),
             const SizedBox(
               height: 20,
             ),
             TextField(
               controller: returnItemController,
-              decoration: InputDecoration(labelText: 'Return Item'),
+              decoration: const InputDecoration(labelText: 'Return Item'),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
+            Row(
+              children: [
+                Expanded(
+                    child: Column(
+                  children: [
+                    Row(children: <Widget>[
+                      Checkbox(
+                          value: returnclothesChecked,
+                          onChanged: (value) {
+                            setState(() {
+                              returnclothesChecked = value!;
+                              if (returnclothesChecked) {
+                                selectedReturnTags.add("returnClothes");
+                              } else if (!returnclothesChecked)
+                                selectedReturnTags.remove("returnClothes");
+                            });
+                          }),
+                      const Text('Clothes')
+                    ]),
+                    Row(children: [Checkbox(
+                        value: returnfitnessChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnfitnessChecked = value!;
+                            if (returnfitnessChecked)
+                              selectedReturnTags.add("returnFitness");
+                            else if (!returnfitnessChecked)
+                              selectedReturnTags.remove("returnFitness");
+                          });
+                        }),
+                    const Text('Fitness Equipment'),],) ,
+                    Row(children: [Checkbox(
+                        value: returnhardwareChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnhardwareChecked = value!;
+                            if (returnhardwareChecked)
+                              selectedReturnTags.add("returnHequip");
+                            else if (!returnhardwareChecked)
+                              selectedReturnTags.remove("returnHequip");
+                          });
+                        }),
+                    const Text('Hardware equipment'),],) ,
+                   Row(children: [Checkbox(
+                        value: returnfreeChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnfreeChecked = value!;
+                            if (returnfreeChecked)
+                              selectedReturnTags.add("returnFree");
+                            else if (!returnfreeChecked) selectedReturnTags.remove("returnFree");
+                          });
+                        }),
+                    const Text('Free'),],) 
+                  ],
+                )),
+                Expanded(
+                    child: Column(
+                  children: [
+                   Row(children: [Checkbox(
+                        value: returnelectricalChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnelectricalChecked = value!;
+                            if (returnelectricalChecked)
+                              selectedReturnTags.add("returnelectronics");
+                            else if (!returnelectricalChecked)
+                              selectedReturnTags.remove("returnelectronics");
+                          });
+                        }),
+                    const Text('Electrical Equipment'),],) ,
+                   Row(children: [Checkbox(
+                        value: returnhouseChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnhouseChecked = value!;
+                            if (returnhouseChecked)
+                              selectedReturnTags.add("returnHouse");
+                            else if (!houseChecked)
+                              selectedReturnTags.remove("returnHouse");
+                          });
+                        }),
+                    const Text('Household Items'),],) ,
+                   Row(children: [Checkbox(
+                        value: returnsuppliesChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnsuppliesChecked = value!;
+                            if (returnsuppliesChecked)
+                              selectedReturnTags.add("returnSupplies");
+                            else if (!returnsuppliesChecked)
+                              selectedReturnTags.remove("returnSupplies");
+                          });
+                        }),
+                    const Text('Supplies'),],) ,
+                  Row(children: [Checkbox(
+                        value: returnotherChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            returnotherChecked = value!;
+                            if (returnotherChecked)
+                              selectedReturnTags.add("returnOther");
+                            else if (!otherChecked)
+                              selectedReturnTags.remove("returnOther");
+                          });
+                        }),
+                    const Text('Other'),],) ,
+                  ],
+                ))
+              ],
+            ),
+            //Text('Selected Tags: ${selectedReturnTags.join(', ')}'),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 String item = itemNameController.text;
@@ -173,14 +364,17 @@ class CreatePostState extends State<CreatePost> {
                 String postingUser = _auth.currentUser?.displayName ?? "ERROR";
                 if (imageUrl.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Please upload an image')));
+                      const SnackBar(content: Text('Please upload an image')));
                   return;
                 }
-                final post = <String, String>{
+                final post = {
                   "Item": item,
                   "ReturnItem": returnItem,
                   "User": postingUser,
-                  'imageUrl': imageUrl
+                  "imageUrl": imageUrl,
+                  "tags": selectedTags,
+                  "returnTags": selectedReturnTags,
+                  "dateExample": Timestamp.now(),
                 };
                 db.collection("posts").add(post).then((documentSnapshot) =>
                     print("Added Data with ID: ${documentSnapshot.id}"));
@@ -228,90 +422,3 @@ class CreatePostState extends State<CreatePost> {
     }
   }
 }
-
-// Widget checkboxes(BuildContext context) {
-//     return Padding(
-
-//       padding: const EdgeInsets.all(16.0),
-//       child: Column(
-//         children: [
-//           // Row 1
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//             children: [
-//               Checkbox(
-//                 value: checkboxValues[0],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[0] = value!;
-//                   });
-//                 },
-//               ),
-//               Checkbox(
-//                 value: checkboxValues[1],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[1] = value!;
-//                   });
-//                 },
-//               ),
-//               Checkbox(
-//                 value: checkboxValues[2],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[2] = value!;
-//                   });
-//                 },
-//               ),
-//               Checkbox(
-//                 value: checkboxValues[3],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[3] = value!;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-
-//           // Row 2
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//             children: [
-//               Checkbox(
-//                 value: checkboxValues[4],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[4] = value!;
-//                   });
-//                 },
-//               ),
-//               Checkbox(
-//                 value: checkboxValues[5],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[5] = value!;
-//                   });
-//                 },
-//               ),
-//               Checkbox(
-//                 value: checkboxValues[6],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[6] = value!;
-//                   });
-//                 },
-//               ),
-//               Checkbox(
-//                 value: checkboxValues[7],
-//                 onChanged: (value) {
-//                   setState(() {
-//                     checkboxValues[7] = value!;
-//                   });
-//                 },
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );

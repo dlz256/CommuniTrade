@@ -127,7 +127,7 @@ class _LoginViewState extends State<LoginView> {
                             } else {
                               print("THERE WAS AN ERROR!");
                               const AlertDialog(
-                                  title: Text("There was an error!"));
+                                  title: Text("Sign in failed!"));
                             }
                           }
                           }

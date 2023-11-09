@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,11 +16,13 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.user});
 
   Widget _leftSideTile(BuildContext context, DocumentSnapshot document) {
+
     return Expanded(
       flex: 2,
       child: Container(
-          decoration: const BoxDecoration(
-            color: Color(0xffddddff),
+          decoration: BoxDecoration(
+            color: const Color(0xffddddff),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -36,17 +40,16 @@ class HomePage extends StatelessWidget {
                   child: Container(
                       width: 300, // You can adjust the square size as needed
                       height: 200.0,
-                      decoration: const BoxDecoration(
-                        color: Colors.blue, // Color of the square
-                      ),
-                      child: Image.network(
-                       document['imageUrl'],
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text('$error');
-                        },
-                      )
+                      // child: Image.network(
+                      //   document['imageUrl'],
+                      //   errorBuilder: (context, error, stackTrace) {
+                      //     return Text('$error');
+                      //   },
+                      // )
                       // child: Text(document['imageUrl'])
-                      ),
+                     //child: Image(image: AssetImage('assets/images/WhiteTshirt')),
+
+                  ),
                 ),
               ])),
     );
@@ -56,8 +59,9 @@ class HomePage extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Color(0xffddddff),
+            borderRadius: BorderRadius.circular(10.0),
           ),
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -88,16 +92,19 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-    return SizedBox(
+    return Card(
+        elevation: 4, // Add elevation for a shadow effect
+        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ListTile(
-      title: Row(
-        children: <Widget>[
-          _leftSideTile(context, document),
-          _dividorLine(),
-          _rightSideTile(context, document),
-        ],
-      ),
-    ));
+          title: Row(
+            children: <Widget>[
+              _leftSideTile(context, document),
+              _dividorLine(),
+              _rightSideTile(context, document),
+            ],
+          ),
+        ));
   }
 
   @override
@@ -169,7 +176,7 @@ Widget _dividorLine() {
     // Add this to create a vertical line
     color: Colors.black, // Customize the line color
     width: 1.0, // Adjust the width of the line
-    thickness: 1.0, // You can also use 'thickness' for width
+    thickness: 10.0, // You can also use 'thickness' for width
     indent: 10, // Indent from the left side
     endIndent: 10, // Indent from the right side
   );
@@ -183,4 +190,3 @@ String? getUserDisplayName() {
     return 'User Display Name Not Available';
   }
 }
-
