@@ -68,7 +68,7 @@ class CreatePostState extends State<CreatePost> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(user: user),
+                  builder: (context) => HomePageView(user: user),
                 ),
               );
             },
@@ -161,9 +161,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             hardwareChecked = value!;
                             if (hardwareChecked)
-                              selectedTags.add("Hequip");
+                              selectedTags.add("Hardware");
                             else if (!hardwareChecked)
-                              selectedTags.remove("Hequip");
+                              selectedTags.remove("Hardware");
                           });
                         }),
                     const Text('Hardware equipment'),],) ,
@@ -189,9 +189,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             electricalChecked = value!;
                             if (electricalChecked)
-                              selectedTags.add("electronics");
+                              selectedTags.add("Electronics");
                             else if (!electricalChecked)
-                              selectedTags.remove("electronics");
+                              selectedTags.remove("Electronics");
                           });
                         }),
                     const Text('Electrical Equipment'),],) ,
@@ -201,9 +201,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             houseChecked = value!;
                             if (houseChecked)
-                              selectedTags.add("House");
+                              selectedTags.add("Household");
                             else if (!houseChecked)
-                              selectedTags.remove("House");
+                              selectedTags.remove("Household");
                           });
                         }),
                     const Text('Household Items'),],) ,
@@ -256,9 +256,9 @@ class CreatePostState extends State<CreatePost> {
                             setState(() {
                               returnclothesChecked = value!;
                               if (returnclothesChecked) {
-                                selectedReturnTags.add("returnClothes");
+                                selectedReturnTags.add("Clothes");
                               } else if (!returnclothesChecked)
-                                selectedReturnTags.remove("returnClothes");
+                                selectedReturnTags.remove("Clothes");
                             });
                           }),
                       const Text('Clothes')
@@ -269,9 +269,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             returnfitnessChecked = value!;
                             if (returnfitnessChecked)
-                              selectedReturnTags.add("returnFitness");
+                              selectedReturnTags.add("Fitness");
                             else if (!returnfitnessChecked)
-                              selectedReturnTags.remove("returnFitness");
+                              selectedReturnTags.remove("Fitness");
                           });
                         }),
                     const Text('Fitness Equipment'),],) ,
@@ -281,9 +281,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             returnhardwareChecked = value!;
                             if (returnhardwareChecked)
-                              selectedReturnTags.add("returnHequip");
+                              selectedReturnTags.add("Hardware");
                             else if (!returnhardwareChecked)
-                              selectedReturnTags.remove("returnHequip");
+                              selectedReturnTags.remove("Hardware");
                           });
                         }),
                     const Text('Hardware equipment'),],) ,
@@ -293,8 +293,8 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             returnfreeChecked = value!;
                             if (returnfreeChecked)
-                              selectedReturnTags.add("returnFree");
-                            else if (!returnfreeChecked) selectedReturnTags.remove("returnFree");
+                              selectedReturnTags.add("Free");
+                            else if (!returnfreeChecked) selectedReturnTags.remove("Free");
                           });
                         }),
                     const Text('Free'),],) 
@@ -309,21 +309,21 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             returnelectricalChecked = value!;
                             if (returnelectricalChecked)
-                              selectedReturnTags.add("returnelectronics");
+                              selectedReturnTags.add("Electronics");
                             else if (!returnelectricalChecked)
-                              selectedReturnTags.remove("returnelectronics");
+                              selectedReturnTags.remove("Electronics");
                           });
                         }),
-                    const Text('Electrical Equipment'),],) ,
+                    const Text('Electronics'),],) ,
                    Row(children: [Checkbox(
                         value: returnhouseChecked,
                         onChanged: (value) {
                           setState(() {
                             returnhouseChecked = value!;
                             if (returnhouseChecked)
-                              selectedReturnTags.add("returnHouse");
+                              selectedReturnTags.add("Household");
                             else if (!houseChecked)
-                              selectedReturnTags.remove("returnHouse");
+                              selectedReturnTags.remove("Household");
                           });
                         }),
                     const Text('Household Items'),],) ,
@@ -333,9 +333,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             returnsuppliesChecked = value!;
                             if (returnsuppliesChecked)
-                              selectedReturnTags.add("returnSupplies");
+                              selectedReturnTags.add("Supplies");
                             else if (!returnsuppliesChecked)
-                              selectedReturnTags.remove("returnSupplies");
+                              selectedReturnTags.remove("Supplies");
                           });
                         }),
                     const Text('Supplies'),],) ,
@@ -345,9 +345,9 @@ class CreatePostState extends State<CreatePost> {
                           setState(() {
                             returnotherChecked = value!;
                             if (returnotherChecked)
-                              selectedReturnTags.add("returnOther");
+                              selectedReturnTags.add("Other");
                             else if (!otherChecked)
-                              selectedReturnTags.remove("returnOther");
+                              selectedReturnTags.remove("Other");
                           });
                         }),
                     const Text('Other'),],) ,
@@ -374,18 +374,18 @@ class CreatePostState extends State<CreatePost> {
                   "imageUrl": imageUrl,
                   "tags": selectedTags,
                   "returnTags": selectedReturnTags,
-                  "dateExample": Timestamp.now(),
+                  "PostDate": Timestamp.now(),
                 };
                 db.collection("posts").add(post).then((documentSnapshot) =>
-                    print("Added Data with ID: ${documentSnapshot.id}"));
-
+                    //print("Added Data with ID: ${documentSnapshot.id}"),
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => HomePage(user: user)),
+                        builder: (context) => HomePageView(user: user)),
                   );
-                });
+                })
+                );
               },
               child: const Text('Submit'),
             ),

@@ -44,12 +44,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDELE9B2scDKplunAJOe8VZEdQUvznkXkk',
-    appId: '1:753334474052:web:9c2cd663cc0e0786823311',
-    messagingSenderId: '753334474052',
-    projectId: 'communitrade-449ae',
-    authDomain: 'communitrade-449ae.firebaseapp.com',
-    storageBucket: 'communitrade-449ae.appspot.com',
+    apiKey: "AIzaSyDELE9B2scDKplunAJOe8VZEdQUvznkXkk",
+    authDomain: "communitrade-449ae.firebaseapp.com",
+    projectId: "communitrade-449ae",
+    storageBucket: "communitrade-449ae.appspot.com",
+    messagingSenderId: "753334474052",
+    appId: "1:753334474052:web:bc4babf4fa9edc7e823311"
   );
 
   static const FirebaseOptions android = FirebaseOptions(
