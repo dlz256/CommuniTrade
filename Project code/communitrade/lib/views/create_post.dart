@@ -44,7 +44,7 @@ class CreatePostState extends State<CreatePost> {
   bool electricalChecked = false;
   bool suppliesChecked = false;
   bool freeChecked = false;
-  bool otherChecked = false; 
+  bool otherChecked = false;
   bool returnclothesChecked = false;
   bool returnfitnessChecked = false;
   bool returnhouseChecked = false;
@@ -118,12 +118,11 @@ class CreatePostState extends State<CreatePost> {
                 onPressed: () async {
                   PickImageFromGallery();
                 }),
-                if (imageUrl != '') Image.network(
-                        imageUrl,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Text('$error');
-                        }
-                      ),
+            if (imageUrl != '')
+              Image.network(imageUrl,
+                  errorBuilder: (context, error, stackTrace) {
+                return Text('$error');
+              }),
             Row(
               children: [
                 Expanded(
@@ -143,94 +142,123 @@ class CreatePostState extends State<CreatePost> {
                           }),
                       const Text('Clothes')
                     ]),
-                    Row(children: [Checkbox(
-                        value: fitnessChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            fitnessChecked = value!;
-                            if (fitnessChecked)
-                              selectedTags.add("Fitness");
-                            else if (!fitnessChecked)
-                              selectedTags.remove("Fitness");
-                          });
-                        }),
-                    const Text('Fitness Equipment'),],) ,
-                    Row(children: [Checkbox(
-                        value: hardwareChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            hardwareChecked = value!;
-                            if (hardwareChecked)
-                              selectedTags.add("Hardware");
-                            else if (!hardwareChecked)
-                              selectedTags.remove("Hardware");
-                          });
-                        }),
-                    const Text('Hardware equipment'),],) ,
-                   Row(children: [Checkbox(
-                        value: freeChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            freeChecked = value!;
-                            if (freeChecked)
-                              selectedTags.add("Free");
-                            else if (!freeChecked) selectedTags.remove("Free");
-                          });
-                        }),
-                    const Text('Free'),],) 
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: fitnessChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                fitnessChecked = value!;
+                                if (fitnessChecked)
+                                  selectedTags.add("Fitness");
+                                else if (!fitnessChecked)
+                                  selectedTags.remove("Fitness");
+                              });
+                            }),
+                        const Text('Fitness Equipment'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: hardwareChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                hardwareChecked = value!;
+                                if (hardwareChecked)
+                                  selectedTags.add("Hardware");
+                                else if (!hardwareChecked)
+                                  selectedTags.remove("Hardware");
+                              });
+                            }),
+                        const Text('Hardware equipment'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: freeChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                freeChecked = value!;
+                                if (freeChecked)
+                                  selectedTags.add("Free");
+                                else if (!freeChecked)
+                                  selectedTags.remove("Free");
+                              });
+                            }),
+                        const Text('Free'),
+                      ],
+                    )
                   ],
                 )),
                 Expanded(
                     child: Column(
                   children: [
-                   Row(children: [Checkbox(
-                        value: electricalChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            electricalChecked = value!;
-                            if (electricalChecked)
-                              selectedTags.add("Electronics");
-                            else if (!electricalChecked)
-                              selectedTags.remove("Electronics");
-                          });
-                        }),
-                    const Text('Electrical Equipment'),],) ,
-                   Row(children: [Checkbox(
-                        value: houseChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            houseChecked = value!;
-                            if (houseChecked)
-                              selectedTags.add("Household");
-                            else if (!houseChecked)
-                              selectedTags.remove("Household");
-                          });
-                        }),
-                    const Text('Household Items'),],) ,
-                   Row(children: [Checkbox(
-                        value: suppliesChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            suppliesChecked = value!;
-                            if (suppliesChecked)
-                              selectedTags.add("Supplies");
-                            else if (!suppliesChecked)
-                              selectedTags.remove("Supplies");
-                          });
-                        }),
-                    const Text('Supplies'),],) ,
-                  Row(children: [Checkbox(
-                        value: otherChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            otherChecked = value!;
-                            if (otherChecked)
-                              selectedTags.add("Other");
-                            else if (!otherChecked)
-                              selectedTags.remove("Other");
-                          });
-                        }),
-                    const Text('Other'),],) ,
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: electricalChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                electricalChecked = value!;
+                                if (electricalChecked)
+                                  selectedTags.add("Electronics");
+                                else if (!electricalChecked)
+                                  selectedTags.remove("Electronics");
+                              });
+                            }),
+                        const Text('Electrical Equipment'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: houseChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                houseChecked = value!;
+                                if (houseChecked)
+                                  selectedTags.add("Household");
+                                else if (!houseChecked)
+                                  selectedTags.remove("Household");
+                              });
+                            }),
+                        const Text('Household Items'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: suppliesChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                suppliesChecked = value!;
+                                if (suppliesChecked)
+                                  selectedTags.add("Supplies");
+                                else if (!suppliesChecked)
+                                  selectedTags.remove("Supplies");
+                              });
+                            }),
+                        const Text('Supplies'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: otherChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                otherChecked = value!;
+                                if (otherChecked)
+                                  selectedTags.add("Other");
+                                else if (!otherChecked)
+                                  selectedTags.remove("Other");
+                              });
+                            }),
+                        const Text('Other'),
+                      ],
+                    ),
                   ],
                 ))
               ],
@@ -263,94 +291,123 @@ class CreatePostState extends State<CreatePost> {
                           }),
                       const Text('Clothes')
                     ]),
-                    Row(children: [Checkbox(
-                        value: returnfitnessChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnfitnessChecked = value!;
-                            if (returnfitnessChecked)
-                              selectedReturnTags.add("Fitness");
-                            else if (!returnfitnessChecked)
-                              selectedReturnTags.remove("Fitness");
-                          });
-                        }),
-                    const Text('Fitness Equipment'),],) ,
-                    Row(children: [Checkbox(
-                        value: returnhardwareChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnhardwareChecked = value!;
-                            if (returnhardwareChecked)
-                              selectedReturnTags.add("Hardware");
-                            else if (!returnhardwareChecked)
-                              selectedReturnTags.remove("Hardware");
-                          });
-                        }),
-                    const Text('Hardware equipment'),],) ,
-                   Row(children: [Checkbox(
-                        value: returnfreeChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnfreeChecked = value!;
-                            if (returnfreeChecked)
-                              selectedReturnTags.add("Free");
-                            else if (!returnfreeChecked) selectedReturnTags.remove("Free");
-                          });
-                        }),
-                    const Text('Free'),],) 
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnfitnessChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnfitnessChecked = value!;
+                                if (returnfitnessChecked)
+                                  selectedReturnTags.add("Fitness");
+                                else if (!returnfitnessChecked)
+                                  selectedReturnTags.remove("Fitness");
+                              });
+                            }),
+                        const Text('Fitness Equipment'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnhardwareChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnhardwareChecked = value!;
+                                if (returnhardwareChecked)
+                                  selectedReturnTags.add("Hardware");
+                                else if (!returnhardwareChecked)
+                                  selectedReturnTags.remove("Hardware");
+                              });
+                            }),
+                        const Text('Hardware equipment'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnfreeChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnfreeChecked = value!;
+                                if (returnfreeChecked)
+                                  selectedReturnTags.add("Free");
+                                else if (!returnfreeChecked)
+                                  selectedReturnTags.remove("Free");
+                              });
+                            }),
+                        const Text('Free'),
+                      ],
+                    )
                   ],
                 )),
                 Expanded(
                     child: Column(
                   children: [
-                   Row(children: [Checkbox(
-                        value: returnelectricalChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnelectricalChecked = value!;
-                            if (returnelectricalChecked)
-                              selectedReturnTags.add("Electronics");
-                            else if (!returnelectricalChecked)
-                              selectedReturnTags.remove("Electronics");
-                          });
-                        }),
-                    const Text('Electronics'),],) ,
-                   Row(children: [Checkbox(
-                        value: returnhouseChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnhouseChecked = value!;
-                            if (returnhouseChecked)
-                              selectedReturnTags.add("Household");
-                            else if (!houseChecked)
-                              selectedReturnTags.remove("Household");
-                          });
-                        }),
-                    const Text('Household Items'),],) ,
-                   Row(children: [Checkbox(
-                        value: returnsuppliesChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnsuppliesChecked = value!;
-                            if (returnsuppliesChecked)
-                              selectedReturnTags.add("Supplies");
-                            else if (!returnsuppliesChecked)
-                              selectedReturnTags.remove("Supplies");
-                          });
-                        }),
-                    const Text('Supplies'),],) ,
-                  Row(children: [Checkbox(
-                        value: returnotherChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            returnotherChecked = value!;
-                            if (returnotherChecked)
-                              selectedReturnTags.add("Other");
-                            else if (!otherChecked)
-                              selectedReturnTags.remove("Other");
-                          });
-                        }),
-                    const Text('Other'),],) ,
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnelectricalChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnelectricalChecked = value!;
+                                if (returnelectricalChecked)
+                                  selectedReturnTags.add("Electronics");
+                                else if (!returnelectricalChecked)
+                                  selectedReturnTags.remove("Electronics");
+                              });
+                            }),
+                        const Text('Electronics'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnhouseChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnhouseChecked = value!;
+                                if (returnhouseChecked)
+                                  selectedReturnTags.add("Household");
+                                else if (!houseChecked)
+                                  selectedReturnTags.remove("Household");
+                              });
+                            }),
+                        const Text('Household Items'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnsuppliesChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnsuppliesChecked = value!;
+                                if (returnsuppliesChecked)
+                                  selectedReturnTags.add("Supplies");
+                                else if (!returnsuppliesChecked)
+                                  selectedReturnTags.remove("Supplies");
+                              });
+                            }),
+                        const Text('Supplies'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                            value: returnotherChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                returnotherChecked = value!;
+                                if (returnotherChecked)
+                                  selectedReturnTags.add("Other");
+                                else if (!otherChecked)
+                                  selectedReturnTags.remove("Other");
+                              });
+                            }),
+                        const Text('Other'),
+                      ],
+                    ),
                   ],
                 ))
               ],
@@ -378,14 +435,13 @@ class CreatePostState extends State<CreatePost> {
                 };
                 db.collection("posts").add(post).then((documentSnapshot) =>
                     //print("Added Data with ID: ${documentSnapshot.id}"),
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomePageView(user: user)),
-                  );
-                })
-                );
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePageView(user: user)),
+                      );
+                    }));
               },
               child: const Text('Submit'),
             ),

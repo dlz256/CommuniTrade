@@ -7,6 +7,8 @@ import 'package:communitrade/views/authentication/login.dart';
 import 'package:communitrade/views/create_post.dart';
 import 'package:provider/provider.dart';
 
+import 'ProfilePage.dart';
+
 // import 'package:http/http.dart' as http;
 // import 'dart:typed_data';
 class HomePageView extends StatefulWidget {
@@ -27,31 +29,22 @@ class HomePage extends State<HomePageView> {
   Widget build(BuildContext context) {
     final firebaseApp = context.read<FirebaseApp>();
     final FirebaseAuth _auth = FirebaseAuth.instance;
+    final username = getUserDisplayName() as String;
 
 // Create a StreamController to convert the list to a stream
     final StreamController<List<DocumentSnapshot>> _streamController =
         StreamController<List<DocumentSnapshot>>.broadcast();
     List<DocumentSnapshot> documentList = [];
 
-// Add the list to the stream when it's updated
     _streamController.add(documentList);
-
-// ...
 
     Query<Map<String, dynamic>> baseQuery = FirebaseFirestore.instance
         .collection("posts")
         .orderBy("PostDate", descending: true);
 
-    // if (selectedItemFilter != 'All' && selectedReturnItemFilter != 'All') {
-    //   // Both filters are selected
-    //   baseQuery = baseQuery.where("tags", arrayContains: selectedItemFilter);
-    //   baseQuery = baseQuery.where("returnTags", arrayContains: selectedReturnItemFilter);
-    // } else
     if (selectedItemFilter != 'All') {
-      // Only selectedItemFilter is selected
       baseQuery = baseQuery.where("tags", arrayContains: selectedItemFilter);
     } else if (selectedReturnItemFilter != 'All') {
-      // Only selectedReturnItemFilter is selected
       baseQuery = baseQuery.where("returnTags",
           arrayContains: selectedReturnItemFilter);
     }
@@ -67,10 +60,10 @@ class HomePage extends State<HomePageView> {
     );
     return Scaffold(
         appBar: AppBar(
-          title: Text('Dashboard'),
+          title: const Text('Dashboard'),
           actions: [
             IconButton(
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
                 onPressed: () async {
                   try {
                     Future.delayed(Duration.zero, () {
@@ -100,9 +93,13 @@ class HomePage extends State<HomePageView> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
               onPressed: () {
-                Navigator.pushNamed(context, '/page2');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePage(user: username)),
+                );
               },
             ),
           ],
@@ -114,15 +111,17 @@ class HomePage extends State<HomePageView> {
               const SizedBox(width: 20), // Add some spacing between the items
               Row(
                 children: [
-                  Text('Filter Items:'),
-                  SizedBox(width: 10), // Add some spacing between the items
+                  const Text('Filter Items:'),
+                  const SizedBox(
+                      width: 10), // Add some spacing between the items
                   _filterItemOptions(),
                 ],
               ),
               Row(
                 children: [
-                  Text('Filter Return Items:'),
-                  SizedBox(width: 10), // Add some spacing between the items
+                  const Text('Filter Return Items:'),
+                  const SizedBox(
+                      width: 10), // Add some spacing between the items
                   _filterReturnItemOptions(),
                 ],
               ),
@@ -149,7 +148,7 @@ class HomePage extends State<HomePageView> {
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
     return Card(
         elevation: 4, // Add elevation for a shadow effect
-        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ListTile(
           title: Row(
@@ -192,19 +191,17 @@ class HomePage extends State<HomePageView> {
                     errorBuilder: (context, error, stackTrace) {
                       return Text('$error');
                     },
-                  )
-                   
-                      ),
+                  )),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text("Tags:"),
+                    const Text("Tags:"),
                     Expanded(
                       child: Text(
                         generateCommaSeparatedString(itemTagsList),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 14), // Adjust the font size as needed
                       ),
                     ),
@@ -216,6 +213,7 @@ class HomePage extends State<HomePageView> {
 
   Widget _rightSideTile(BuildContext context, DocumentSnapshot document) {
     List<dynamic> itemTagsList = document['returnTags'];
+    String user = document['User'];
     return Flexible(
       flex: 2,
       child: Container(
@@ -223,11 +221,25 @@ class HomePage extends State<HomePageView> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Align(
-                alignment: FractionalOffset.topCenter,
-                child: Text(
-                  document['User'],
-                  style: Theme.of(context).textTheme.titleSmall,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to the profile page using your preferred navigation method
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProfilePage(
+                              user: user,
+                            )),
+                  );
+                },
+                child: Align(
+                  alignment: FractionalOffset.topCenter,
+                  child: Text(
+                    document['User'],
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                          decoration: TextDecoration.underline,
+                        ),
+                  ),
                 ),
               ),
 
@@ -236,9 +248,15 @@ class HomePage extends State<HomePageView> {
                       10), // Add some spacing between the name and the square
               Container(
                 decoration: const BoxDecoration(
-                  color: Colors.lightBlueAccent, // Color of the square
-                ),
+                    color: Color.fromARGB(
+                        255, 231, 243, 243), // Color of the square
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 child: Column(children: [
+                  Text("Requested Return Item",
+                      style: Theme.of(context).textTheme.headlineSmall),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Align(
                       alignment: FractionalOffset.centerLeft,
                       child: Container(
@@ -246,10 +264,10 @@ class HomePage extends State<HomePageView> {
                         // height: 155.0,
                         child: Text(
                           document['ReturnItem'],
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                       )),
-                  const SizedBox(height: 200),
+                  const SizedBox(height: 120),
                 ]),
               ),
               Align(
@@ -258,11 +276,11 @@ class HomePage extends State<HomePageView> {
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text("Tags:"),
+                    const Text("Tags:"),
                     Expanded(
                       child: Text(
                         generateCommaSeparatedString(itemTagsList),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 14), // Adjust the font size as needed
                       ),
                     ),

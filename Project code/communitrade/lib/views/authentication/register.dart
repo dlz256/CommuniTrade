@@ -25,6 +25,7 @@ class _RegisterViewState extends State<RegisterView> {
               key: _formKey,
               child: Column(
                 children: <Widget>[
+                  const SizedBox(height: 10,),
                   TextFormField(
                     controller: _nameTextController,
                     decoration: const InputDecoration(
