@@ -60,7 +60,7 @@ class _RegisterViewState extends State<RegisterView> {
                         if (user != null) {
                           Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                              builder: (context) => HomePageView(user: user),
+                              builder: (context) => HomePageView(user: user, filter: "All"),
                             ),
                             ModalRoute.withName('/'),
                           );

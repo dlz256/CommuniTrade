@@ -35,6 +35,7 @@ class _LoginViewState extends State<LoginView> {
         MaterialPageRoute(
           builder: (context) => HomePageView(
             user: user,
+            filter: "All"
           ),
         ),
       );
@@ -86,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                             if (user != null) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => HomePageView(user: user)),
+                                    builder: (context) => HomePageView(user: user, filter:"All")),
                               );                           
                             } else {
                               print("THERE WAS AN ERROR!");

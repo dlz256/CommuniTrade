@@ -12,8 +12,9 @@ import 'ProfilePage.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:typed_data';
 class HomePageView extends StatefulWidget {
-  const HomePageView({super.key, required this.user});
+  const HomePageView({Key? key, required this.user, required this.filter}) : super(key: key);
   final User user;
+  final String filter;
 
   @override
   State<HomePageView> createState() => HomePage();
@@ -21,10 +22,17 @@ class HomePageView extends StatefulWidget {
 
 class HomePage extends State<HomePageView> {
   get user => super.widget.user;
+  get Returnfilter => super.widget.filter;
 
   String selectedItemFilter = 'All'; // Default filter
-  String selectedReturnItemFilter = 'All'; // Default filter
+  late String selectedReturnItemFilter;
 
+  @override
+  void initState() {
+    super.initState();
+    selectedReturnItemFilter = widget.filter; // Set selectedReturnItemFilter in initState
+  }
+  
   @override
   Widget build(BuildContext context) {
     final firebaseApp = context.read<FirebaseApp>();
@@ -197,7 +205,7 @@ class HomePage extends State<HomePageView> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Text("Tags:"),
+                    const Text("Tags: "),
                     Expanded(
                       child: Text(
                         generateCommaSeparatedString(itemTagsList),
@@ -276,7 +284,7 @@ class HomePage extends State<HomePageView> {
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Text("Tags:"),
+                    const Text("Tags: "),
                     Expanded(
                       child: Text(
                         generateCommaSeparatedString(itemTagsList),
