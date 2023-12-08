@@ -13,3 +13,6 @@ Taking inspiration from the saying: "one man's trash is another man's treasure',
 
 Instead of throwing out a bag of clothes that don’t fit you anymore, why not trade it with someone that no longer fits the size that you need? Or given the chance that you have a lot of unused diapers
 that you will no longer need, there is definitely someone out there that is desperate to find diapers but can’t afford it. This is the opportunity that this application will target. Our 'Why' is to create a sustainable, community-driven trading platform that empowers people to reduce waste and promote responsible consumption. This will be achieve this by providing an intuitive and user-friendly interface for effortless item listings and connecting the community to responsibly trade items.
+
+# Commercial
+https://youtu.be/F4MkhWa8muQ
