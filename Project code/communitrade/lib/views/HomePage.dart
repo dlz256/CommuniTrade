@@ -24,13 +24,13 @@ class HomePage extends State<HomePageView> {
   get user => super.widget.user;
   get Returnfilter => super.widget.filter;
 
-  String selectedItemFilter = 'All'; // Default filter
-  late String selectedReturnItemFilter;
+  String selectedReturnItemFilter = 'All'; // Default filter
+  late String selectedItemFilter;
 
   @override
   void initState() {
     super.initState();
-    selectedReturnItemFilter = widget.filter; // Set selectedReturnItemFilter in initState
+    selectedItemFilter = widget.filter; // Set selectedReturnItemFilter in initState
   }
   
   @override
